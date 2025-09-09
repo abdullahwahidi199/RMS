@@ -1,7 +1,12 @@
+# users/views.py
+from rest_framework import viewsets
+from .models import Staff,Shift
+from .serializers import StaffSerializer,ShiftSerializer
 
-# Create your views here.
-from django.shortcuts import render
-from django.http import HttpResponse
+class StaffViewSet(viewsets.ModelViewSet):
+    queryset = Staff.objects.all()
+    serializer_class = StaffSerializer
 
-def test_view(requset):
-    return HttpResponse("usres app is working fine")
+class ShifViewSet(viewsets.ModelViewSet):
+    queryset=Shift.objects.all()
+    serializer_class=ShiftSerializer
