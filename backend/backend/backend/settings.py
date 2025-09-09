@@ -42,9 +42,13 @@ INSTALLED_APPS = [
     'orders',
     'reports',
     'users',
+    'rest_framework',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -55,7 +59,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'backend.urls'
-
+CORS_ALLOW_ALL_ORIGINS = True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

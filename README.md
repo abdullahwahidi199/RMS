@@ -8,6 +8,7 @@ python -m venv venv
 
 cd backend
 pip install -r requirements.txt
+pip install djangorestframework
 python manage.py migrate
 python manage.py runserver
 
