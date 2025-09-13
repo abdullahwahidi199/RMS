@@ -1,6 +1,20 @@
 from django.db import models
 from django.utils import timezone
 
+
+class Shift(models.Model):
+    shift_type=models.CharField(
+        max_length=20,
+        choices=[("Morning", "Morning"), ("Evening", "Evening"), ("Night", "Night"), ("Custom", "Custom")],
+        default='Custom'
+    )
+    # staff=models.ForeignKey(Staff,on_delete=models.CASCADE,related_name="shifts")
+    start_time=models.DateTimeField()
+    end_time=models.DateTimeField()
+
+    def __str__(self):
+        return f"{self.staff.name} - {self.start_time} to {self.end_time}"
+    
 class Staff(models.Model):
     ROLE_CHOICES=[
         ('Admin','Admin'),
@@ -14,6 +28,7 @@ class Staff(models.Model):
     email=models.EmailField(unique=True)
     role=models.CharField(max_length=20,choices=ROLE_CHOICES)
     custom_role=models.CharField(max_length=50,null=True,blank=True)
+    shift=models.ForeignKey(Shift,on_delete=models.CASCADE,related_name="staff",null=True,blank=True)
     phone=models.CharField(max_length=15,unique=True)
     hire_date=models.DateField()
     status = models.CharField(
@@ -31,18 +46,6 @@ class Staff(models.Model):
     
 
 
-class Shift(models.Model):
-    shift_type=models.CharField(
-        max_length=20,
-        choices=[("Morning", "Morning"), ("Evening", "Evening"), ("Night", "Night"), ("Custom", "Custom")],
-        default='Custom'
-    )
-    staff=models.ForeignKey(Staff,on_delete=models.CASCADE,related_name="shifts")
-    start_time=models.DateTimeField()
-    end_time=models.DateTimeField()
-
-    def __str__(self):
-        return f"{self.staff.name} - {self.start_time} to {self.end_time}"
     
 class Attendance(models.Model):
     STATUS_CHOICES = [
@@ -56,7 +59,7 @@ class Attendance(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Present')
 
     class Meta:
-        unique_together = ('staff', 'date', 'shift')
+        unique_together = ('staff', 'date','shift')
 
     def __str__(self):
         return f"{self.staff.name} - {self.date} - {self.status}"
