@@ -4,6 +4,7 @@ import './forTailwind.css';
 import RootLayout from './rootLayout'
 import AdminDashboard from './component/Admin/adminDashboard';
 import HomePage from './component/Admin/home';
+import Attendance from './component/Admin/attendance';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <Route path='/' element={<RootLayout/>}>
         <Route path='admin/dashboard' element={<AdminDashboard/>}>
           <Route index element={<HomePage/>}/>
+          <Route path='attendance' element={<Attendance/>}/>
         </Route>
       </Route>
     )

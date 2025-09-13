@@ -12,14 +12,21 @@ class PayrollSerializer(serializers.ModelSerializer):
         model=Payroll
         fields="__all__"
 
+# class ShiftMiniserializer(serializers.ModelSerializer):
+#     class Meta:
+#         model=Shift
+#         fields='__all__'
+
 class StaffSerializer(serializers.ModelSerializer):
     attendances=AttendanceSerializer(many=True,read_only=True)
     payrolls=PayrollSerializer(many=True,read_only=True)
+
     class Meta:
         model = Staff
         fields = "__all__"
 
 class ShiftSerializer(serializers.ModelSerializer):
+    staff=StaffSerializer(many=True,read_only=True)
     class Meta:
         model=Shift
         fields="__all__"
