@@ -2,25 +2,25 @@ git clone https://github.com/abdullahwahidi199/RMS
 cd RMS
 
 Backend Setup (Django + DRF)
-cd backend
-python -m venv venv
-.\venv\Scripts\Activate
+cd backend,
+python -m venv venv,
+.\venv\Scripts\Activate,
 
-cd backend
-pip install -r requirements.txt
-pip install djangorestframework
-python manage.py migrate
-python manage.py runserver
-
-
+cd backend,
+pip install -r requirements.txt,
+pip install djangorestframework,
+python manage.py migrate,
+python manage.py runserver,
 
 
 
 
-Frontend Setup (React)
-cd frontend
-npm install 
-npm run dev
+
+
+Frontend Setup (React),
+cd frontend,
+npm install,
+npm run dev,
 
 
 
